@@ -1,7 +1,8 @@
 let pokemonList = [
     {
         name: 'Charmeleon',
-        height: 3.07,
+        pokedexNumber: 1,
+        height: 5,
         weight: 41.9,
         category: 'flame',
         types: ['fire'],
@@ -10,7 +11,8 @@ let pokemonList = [
     },
     {
         name: 'Ivysaur',
-        height: 3.03,
+        pokedexNumber: 2,
+        height: 3,
         weight: 28.7,
         category: 'seed',
         types: ['grass', 'poison'],
@@ -19,11 +21,24 @@ let pokemonList = [
     },
     {
         name: 'Wartortle',
-        height: 3.03,
+        pokedexNumber: 3,
+        height: 4,
         weight: 49.6,
         category: 'turtle',
         types: ['water'],
         abilities: ['turrent'],
         weaknesses: ['grass', 'electric'],
     }
-];
+]
+
+//list all pokemon's pokedex number, name and height
+for (let i = 0; i < pokemonList.length; i++) {
+    document.write(pokemonList[i].pokedexNumber + '. ' + pokemonList[i].name + ' ' + '(height: ' + pokemonList[i].height + ') ');
+//creates conditional that if a pokemon is a certain height a phrase will be added on
+ if (pokemonList[i].height >= 5) {
+    document.write('- Wow that\'s big!<br>')
+}
+else if (pokemonList[i].height < 5)
+    document.write(' <br>')
+}
+
