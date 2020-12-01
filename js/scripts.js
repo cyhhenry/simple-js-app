@@ -31,14 +31,26 @@ let pokemonList = [
     }
 ]
 
-//list all pokemon's pokedex number, name and height
-for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].pokedexNumber + '. ' + pokemonList[i].name + ' ' + '(height: ' + pokemonList[i].height + ') ');
-//creates conditional that if a pokemon is a certain height a phrase will be added on
- if (pokemonList[i].height >= 5) {
-    document.write('- Wow that\'s big!<br>')
-}
-else if (pokemonList[i].height < 5)
-    document.write(' <br>')
-}
+    (function myLoopFunction(pokemonList) {
+        console.log(index + '. ' + pokemonList.name + ' ' + '(height: ' + pokemonList.height + ') ' + '<br>');
+    }
+pokemonList.forEach(myLoopFunction);
+}) ();
 
+
+let pokemonRepository = (function () {
+    let pokemonList = []; // empty array
+
+    return {
+        add: function (pokemon) {
+            pokemonList.push(pokemon);
+        },
+        getAll: function () {
+            return pokemonList;
+        }
+    };
+})();
+
+console.log(pokemonRepository.getAll()); // []
+pokemonRepository.add({ name: 'Pikachu' });
+console.log(pokemonRepository.getAll()); // [ { name: 'Pikachu' } ]
