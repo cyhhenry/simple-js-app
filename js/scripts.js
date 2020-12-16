@@ -44,10 +44,31 @@ let pokemonRepository = (function () {
 })();
 
 pokemonRepository.add({ name: 'Pikachu' });
-pokemonRepository.getAll().forEach(function (pokemon) {
-    document.write(`${pokemon.pokedexNumber}. ${pokemon.name} - height: ${pokemon.height}, weight: ${pokemon.weight}<br>`)
-})
+pokemonRepository.getAll().forEach(
+    function addListItem(pokemon) {
+        function (pokemon) {
+            let ul = document.querySelector('ul');
+            let listItem = document.createElement('li');
+            let button = document.createElement('button');
+            button;
+            document.querySelector('button').innerText(pokemon);
+            button.classList.add('button');
+            document.ul.appendChild('li');
+            document.body.appendChild('ul');
+        }
+
+        function showDetails(pokemon) {
+            button.addEventListner('click', () => {
+
+            })
+        }
+
+    }
+
+)
 
 
 
 
+
+appendChild()
