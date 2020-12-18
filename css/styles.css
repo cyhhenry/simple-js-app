@@ -1,3 +1,5 @@
+/* 
+create a CSS rule that targets this class and give it a custom button style of your own to overwrite the default styling */
 .button{
     color:cadetblue;
     text-align: center;
