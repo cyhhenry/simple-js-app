@@ -16,6 +16,7 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+    //This function adds a list item to the list for each pokemon
     function addListItem(pokemon) { //#2.1: Create a function inside your IIFE and name it addListItem(). && #2.2 This function has one parameter—it will represent a single Pokémon. Name the parameter pokemon.
         let pokemonList = document.querySelector('.pokemon-list'); //#1.2: create a variable inside the forEach's loop function block, then assign it the ul element you just added to your “index.html” file.
         let listPokemon = document.createElement('li'); //#1.4 Create an li element (e.g., let listItem = document.createElement('li')).
@@ -62,7 +63,52 @@ let pokemonRepository = (function () {
 
     function showDetails(item) { //#3.2.1: Create a new function either above or below addListItem() and call it showDetails(). The function should expect one parameter: pokemon. Inside the function, run a console.log() on the Pokémon object that’s passed as the parameter.
         loadDetails(item).then(function () {
-            console.log(item);
+            let modalContainer = document.querySelector('#modal-container');
+            function showModal(title, text) {
+                modalContainer.innerHTML = '';
+                let modal = document.createElement('div');
+                modal.classList.add('modal');
+
+                let closeButtonElement = document.createElement('button');
+                closeButtonElement.classList.add('modal-close');
+                closeButtonElement.innerText = 'Close';
+                closeButtonElement.addEventListener('click', hideModal);
+
+                let titleElement = document.createElement('h1');
+                titleElement.innerText = title;
+
+                let contentElement = document.createElement('p');
+                contentElement.innerText = text;
+
+                modal.appendChild(closeButtonElement);
+                modal.appendChild(titleElement);
+                modal.appendChild(contentElement);
+                modalContainer.appendChild(modal);
+
+                modalContainer.classList.add('is-visible');
+            }
+
+            function hideModal() {
+                modalContainer.classList.remove('is-visible');
+            }
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+                    hideModal();
+                }
+            });
+            modalContainer.addEventListener('click', (e) => {
+                // Since this is also triggered when clicking INSIDE the modal
+                // We only want to close if the user clicks directly on the overlay
+                let target = e.target;
+                if (target === modalContainer) {
+                    hideModal();
+                }
+            });
+
+            document.querySelector('#show-modal').addEventListener('click', () => {
+                showModal('Modal title', 'This is the modal content!');
+            });
         });
     }
 
